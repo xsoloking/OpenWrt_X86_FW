@@ -28,11 +28,11 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   CUSTOM_SH: custom.sh
-  SSH_ACTIONS: true
+  SSH_ACTIONS: false
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
-  UPLOAD_WETRANSFER: true
+  UPLOAD_WETRANSFER: false
   TZ: Asia/Shanghai
 
 jobs:
@@ -108,7 +108,7 @@ jobs:
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         cd openwrt/bin/targets/*/*
-        rm -rf packages
+        find . -name "*.tar.gz"
         echo "::set-env name=FIRMWARE::$PWD"
         echo "::set-output name=status::success"
 
