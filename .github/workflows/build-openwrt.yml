@@ -28,7 +28,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   CUSTOM_SH: custom.sh
-  SSH_ACTIONS: false
+  SSH_ACTIONS: true
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
@@ -75,9 +75,6 @@ jobs:
     - name: SSH connection to Actions
       uses: P3TERX/debugger-action@master
       if: env.SSH_ACTIONS == 'true' || contains(github.event.action, 'ssh')
-
-    - name: Copy .config to OpenWrt
-      run: cp -f .config ./openwrt/.config
 
     - name: Download package
       id: package
