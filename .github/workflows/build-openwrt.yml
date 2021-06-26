@@ -64,6 +64,8 @@ jobs:
       run: |
         cd openwrt
         sed -i 's/^#//g' feeds.conf.default
+        echo "src-git management https://github.com/openwrt-management/packages.git" >> feeds.conf.default
+        echo "src-git helloworld https://github.com/fw876/helloworld" >> feeds.conf.default
         cat feeds.conf.default
         sed -i 's/192.168.1.1/192.168.2.2/g' package/base-files/files/bin/config_generate
         grep "192.168.2.2" package/base-files/files/bin/config_generate
